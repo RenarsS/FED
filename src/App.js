@@ -1,24 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import {useEffect, useState} from "react";
+import axios from "axios";
+import Quiz from "./Quiz";
+import {Container, createTheme, ThemeProvider} from "@mui/material";
+
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#353535',
+        },
+    },
+});
 
 function App() {
+
+  const [data, setData] = useState("");
+
+
+  useEffect(() => {
+    axios.get("https://opentdb.com/api.php?amount=10&category=19&type=multiple")
+        .then(response => response.data.results)
+        .then(result => {
+          setData(result);
+        })
+
+  }, []);
+
+  console.log(data)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+        <Container>
+            <div className={"App"}>
+                <Quiz questions={data}/>
+            </div>
+        </Container>
+    </ThemeProvider>
   );
 }
 

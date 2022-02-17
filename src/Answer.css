@@ -1,0 +1,17 @@
+.Answer-buttons{
+    width: 100%;
+    height: 5rem;
+    margin: 5rem 0;
+    display: flex !important;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: row;
+}
+.Answer-container{
+    width: 20%;
+    height: 5rem;
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}

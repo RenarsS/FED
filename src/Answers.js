@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {Button, Container} from "@mui/material";
-
-function Answer({options, correctAnswer})
+import "./Answer.css";
+function Answers({options, correctAnswer, next, score})
 {
-    const [score, setScore] = useState(0);
+
     const [sequence, setSequence] = useState(new Array(4));
+
 
     useEffect(() => {
 
@@ -18,7 +19,12 @@ function Answer({options, correctAnswer})
 
     function handleClick(e){
         e.preventDefault();
-        console.log(e.target.innerText);
+
+        if(e.target.innerText == correctAnswer){
+            score();
+        }
+
+        next();
     }
 
 
@@ -26,16 +32,23 @@ function Answer({options, correctAnswer})
         return (<div></div>)
 
     return(
-        <Container>
-            {sequence.map(element => {
-                return(
-                    <Button key={element} onClick={handleClick}>
-                        {element}
-                    </Button>
-                )
-            })}
-        </Container>
+        <div className={"Answer-buttons"}>
+                {sequence.map(element => {
+                    return(
+                        <div className={"Answer-container"} key={element}>
+                            <Button
+                                    onClick={handleClick}
+                                    size={"large"}
+                                    variant={"outlined"}
+                                    fullWidth={true}
+                            >
+                                {element}
+                            </Button>
+                        </div>
+                    )
+                })}
+        </div>
     )
 }
 
-export default Answer;
+export default Answers;

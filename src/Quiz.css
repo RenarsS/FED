@@ -1,0 +1,16 @@
+.Quiz-container{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Quiz-question{
+    margin: 100px 50px;
+    width:100%;
+    position: fixed;
+    botom: 0;
+    right:10px;
+    text-align: right;
+}
